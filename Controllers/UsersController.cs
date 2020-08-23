@@ -152,9 +152,9 @@ namespace WebApi.Controllers
 
         [HttpGet("ConvertNairaToDollar")]
         [AllowAnonymous]
-        public IActionResult ConvertNairaToDollar(double amount, int currencyId)
+        public IActionResult ConvertNairaToDollar([FromBody]CurrencyConverterDTO model)
         {
-            var res = _converter.ConvertNairaToDollar(amount, currencyId);
+            var res = _converter.ConvertAnyCurrencyToAnyCurrency(model);
 
             if (res.errorList != null)
                 return Ok(res.errorList);
